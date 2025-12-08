@@ -7,6 +7,16 @@
   --accent-clr: #5e63ff;
   --secondary-text-clr: #b0b3c1;
 }
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-track{
+  background: var(--base-clr);
+}
+::-webkit-scrollbar-thumb{
+  background: var(--line-clr);
+  border-radius: 5px;
+}
 *{
   margin: 0;
   padding: 0;
@@ -88,6 +98,7 @@ body{
 }
 #sidebar a:hover, #sidebar .dropdown-btn:hover{
   background-color: var(--hover-clr);
+  transition: 300ms ease-in-out;
 }
 #sidebar .sub-menu{
   display: grid;
@@ -108,7 +119,7 @@ body{
   rotate: 180deg;
 }
 #sidebar .sub-menu a{
-  padding-left: 2em;
+  padding-left: 3em;
 }
 #toggle-btn{
   margin-left: auto;
@@ -134,12 +145,38 @@ main p{
   margin-top: 5px;
   margin-bottom: 15px;
 }
+/* container ni siya */
 .container{
   border: 1px solid var(--line-clr);
   border-radius: 1em;
   margin-bottom: 20px;
   padding: min(3em, 15%);
 
+  hr{
+    border: 1px solid var(--line-clr);
+  }
+  .links{
+    display: flex;
+    flex-direction: rows;
+    gap: 50px;
+  }
+  .social-links{
+    text-decoration: none;
+    color: var(--secondary-text-clr);
+    margin: 0 5px;
+    transition: 300ms ease-in-out;
+  }
+  .links-platform p{
+    color: var(--text-clr);
+  }
+  .links-platform{
+    margin: 30px 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .social-links:hover{
+    color: var(--accent-clr);
+  }
   h2, p { margin-top: 1em}
 
   p, h5{
@@ -154,12 +191,12 @@ main p{
   }
   .toPrint{
     margin: 10px 30px;
+    transition: 300ms ease-in-out;
   }
   .toPrint:hover{
     width: 50px;
     height: 50px;
     fill: var(--accent-clr);
-    transition: 200ms ease-in-out;
   }
   .toPrint.active{
     width: 50px;
@@ -179,12 +216,10 @@ main p{
   .warningIcon{
     position: relative;
     bottom: -45px;
-
-
   }
   #warningDesc{
-      padding-left: 25px;
-    }
+    padding-left: 25px;
+  }
 }
 .print-panel {
   
