@@ -1,65 +1,44 @@
-const toggleButton = document.getElementById('toggle-btn')
-const sidebar = document.getElementById('sidebar')
-const help = document.getElementById('helpfunc')
+const toggleButton = document.getElementById('toggle-btn');
+const sidebar = document.getElementById('sidebar');
 
-function toggleSidebar(){
-  sidebar.classList.toggle('close')
-  toggleButton.classList.toggle('rotate')
-
-  closeAllSubMenus()
+// Toggle sidebar open/close
+function toggleSidebar() {
+  sidebar.classList.toggle('close');
+  toggleButton.classList.toggle('rotate');
 }
 
-function toggleSubMenu(button){
-
-  if(!button.nextElementSibling.classList.contains('show')){
-    closeAllSubMenus()
+// Submenu toggle (optional if you add dropdowns later)
+function toggleSubMenu(button) {
+  const subMenu = button.nextElementSibling;
+  if (!subMenu.classList.contains('show')) {
+    closeAllSubMenus();
   }
+  subMenu.classList.toggle('show');
+  button.classList.toggle('rotate');
 
-  button.nextElementSibling.classList.toggle('show')
-  button.classList.toggle('rotate')
-
-  if(sidebar.classList.contains('close')){
-    sidebar.classList.toggle('close')
-    toggleButton.classList.toggle('rotate')
+  if (sidebar.classList.contains('close')) {
+    sidebar.classList.toggle('close');
+    toggleButton.classList.toggle('rotate');
   }
 }
 
-function closeAllSubMenus(){
+// Close all submenus
+function closeAllSubMenus() {
   Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
-    ul.classList.remove('show')
-    ul.previousElementSibling.classList.remove('rotate')
-  })
+    ul.classList.remove('show');
+    ul.previousElementSibling.classList.remove('rotate');
+  });
 }
 
-//active list selector
-const listItems = document.querySelectorAll('.isActive');
+// Highlight active sidebar link
+const listItems = document.querySelectorAll('#sidebar ul li');
 
-        listItems.forEach(item => {
-          item.addEventListener('click', function() {
-
-          const currentActive = document.querySelector('.active');
-          if (currentActive) {
-            currentActive.classList.remove('active');
-          }
-
-        // Add 'active' class to the clicked item
-        this.classList.add('active');
-    });
-});
-
-//print click
-const printPanel = document.getElementById('printPanel');
-const printIcon = document.querySelector('.toPrint');
-const printClose = document.querySelector('.close-print');
-
-// open when clicking print icon
-printIcon.addEventListener('click', () => {
-    printPanel.classList.toggle('show');
-    printIcon.classList.toggle('active')
-});
-
-// close the panel
-printClose.addEventListener('click', () => {
-    printPanel.classList.remove('show');
-    printIcon.classList.remove('active')
+listItems.forEach(item => {
+  item.addEventListener('click', function () {
+    const currentActive = document.querySelector('#sidebar ul li.active');
+    if (currentActive) {
+      currentActive.classList.remove('active');
+    }
+    this.classList.add('active');
+  });
 });
