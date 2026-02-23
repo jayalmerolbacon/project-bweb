@@ -1,44 +1,41 @@
 const toggleButton = document.getElementById('toggle-btn');
 const sidebar = document.getElementById('sidebar');
 
-// Toggle sidebar open/close
 function toggleSidebar() {
-  sidebar.classList.toggle('close');
-  toggleButton.classList.toggle('rotate');
-}
-
-// Submenu toggle (optional if you add dropdowns later)
-function toggleSubMenu(button) {
-  const subMenu = button.nextElementSibling;
-  if (!subMenu.classList.contains('show')) {
-    closeAllSubMenus();
-  }
-  subMenu.classList.toggle('show');
-  button.classList.toggle('rotate');
-
-  if (sidebar.classList.contains('close')) {
     sidebar.classList.toggle('close');
     toggleButton.classList.toggle('rotate');
-  }
+    closeAllSubMenus();
 }
 
-// Close all submenus
+function toggleSubMenu(button) {
+    if (!button.nextElementSibling.classList.contains('show')) {
+        closeAllSubMenus();
+    }
+    button.nextElementSibling.classList.toggle('show');
+    button.classList.toggle('rotate');
+
+    if (sidebar.classList.contains('close')) {
+        sidebar.classList.toggle('close');
+        toggleButton.classList.toggle('rotate');
+    }
+}
+
 function closeAllSubMenus() {
-  Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
-    ul.classList.remove('show');
-    ul.previousElementSibling.classList.remove('rotate');
-  });
+    Array.from(sidebar.getElementsByClassName('show')).forEach(ul => {
+        ul.classList.remove('show');
+        ul.previousElementSibling.classList.remove('rotate');
+    });
 }
 
-// Highlight active sidebar link
-const listItems = document.querySelectorAll('#sidebar ul li');
+// Active list selector
+const listItems = document.querySelectorAll('.isActive');
 
 listItems.forEach(item => {
-  item.addEventListener('click', function () {
-    const currentActive = document.querySelector('#sidebar ul li.active');
-    if (currentActive) {
-      currentActive.classList.remove('active');
-    }
-    this.classList.add('active');
-  });
+    item.addEventListener('click', function() {
+        const currentActive = document.querySelector('.active');
+        if (currentActive) {
+            currentActive.classList.remove('active');
+        }
+        this.classList.add('active');
+    });
 });
