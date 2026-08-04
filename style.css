@@ -9,11 +9,11 @@
   --secondary-text-clr: #b0b3c1;
 }
 
-/* ALL YOUR ORIGINAL CSS HERE (unchanged) */
-::-webkit-scrollbar { /* ... your scrollbar styles ... */ }
-/* ... copy ALL your original CSS exactly ... */
 
-/* NEW HERO SECTION STYLES (add to BOTTOM) */
+::-webkit-scrollbar { /* ... your scrollbar styles ... */ }
+
+
+
 .hero {
     height: 100vh;
     position: relative;
